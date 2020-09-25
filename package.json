@@ -1,0 +1,53 @@
+{
+  "name": "weiss-light-assistent",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@hookform/resolvers": "^0.1.1",
+    "@reach/tooltip": "^0.11.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
+    "@testing-library/user-event": "^12.1.5",
+    "focus-visible": "^5.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hook-form": "^6.8.3",
+    "react-scripts": "3.4.3",
+    "styled-components": "^5.2.0",
+    "styled-normalize": "^8.0.7",
+    "yup": "^0.29.3"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.11.1",
+    "customize-cra": "^1.0.0",
+    "prettier": "^2.1.2",
+    "react-app-rewired": "^2.1.6",
+    "stylelint": "^13.7.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.10.0"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
