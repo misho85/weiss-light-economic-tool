@@ -18,7 +18,7 @@ const Title = styled.h3`
   position: relative;
   text-align: center;
   text-transform: capitalize;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   font-size: 2.5em;
   font-weight: bold;
 `;

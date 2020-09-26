@@ -10,6 +10,9 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${p => p.theme.maxWidth.phone`
+    padding: 5% 0;
+  `}
 `;
 
 function App() {

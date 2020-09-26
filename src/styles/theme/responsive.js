@@ -38,4 +38,5 @@ const maxWidth = Object.keys(sizes).reduce((acc, label) => {
 export default {
   minWidth,
   maxWidth,
+  sizes,
 };
