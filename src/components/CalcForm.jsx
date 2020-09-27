@@ -10,7 +10,6 @@ const Wrapper = styled.form`
   height: 100%;
   border-radius: 2em;
   background-color: ${p => p.theme.colors.white};
-  margin-bottom: 1.2em;
   padding: 3% 8%;
 `;
 
@@ -18,7 +17,7 @@ const Title = styled.h3`
   position: relative;
   text-align: center;
   text-transform: capitalize;
-  margin-bottom: 0.5em;
+  margin: 0.5em;
   font-size: 2.5em;
   font-weight: bold;
 `;
@@ -75,13 +74,35 @@ const CostBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
-  padding: 0 3%;
+  justify-content: space-between;
+  padding: 0 10% 0 3%;
 `;
 
 const CostLabel = styled.p`
   font-size: 1.3em;
   font-weight: bold;
   line-height: 1;
+`;
+
+const Cost = styled.p`
+  font-size: 1.2em;
+  font-weight: 600;
+  line-height: 1;
+`;
+
+const NumberBox = styled.div`
+  text-align: center;
+  margin-top: 1.5em;
+
+  > h2 {
+    font-size: 2em;
+    font-weight: 400;
+    margin-bottom: 0.2em;
+  }
+  > h4 {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
 `;
 
 const validationSchema = yup.object().shape({
@@ -135,9 +156,11 @@ const CalcForm = () => {
             </InputBox>
             <CostBox left>
               <CostLabel>Inicijalni troškovi</CostLabel>
+              <Cost>300,20</Cost>
             </CostBox>
             <CostBox left>
               <CostLabel>Godišnji troškovi</CostLabel>
+              <Cost>300,20</Cost>
             </CostBox>
           </BoxLeft>
           <BoxRight>
@@ -156,11 +179,27 @@ const CalcForm = () => {
             </InputBox>
             <CostBox>
               <CostLabel>Inicijalni troškovi</CostLabel>
+              <Cost>300,20</Cost>
             </CostBox>
             <CostBox>
               <CostLabel>Godišnji troškovi</CostLabel>
+              <Cost>300,20</Cost>
             </CostBox>
           </BoxRight>
+        </Box>
+        <Box>
+          <NumberBox>
+            <h2>$10</h2>
+            <h4>Godišnja ušteda</h4>
+          </NumberBox>
+          <NumberBox>
+            <h2>1.5 Godina</h2>
+            <h4>Period isplativosti</h4>
+          </NumberBox>
+          <NumberBox>
+            <h2>$5</h2>
+            <h4>Mesečna razlika</h4>
+          </NumberBox>
         </Box>
       </Wrapper>
     </FormProvider>

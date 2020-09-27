@@ -33,17 +33,13 @@ const Name = styled.span`
 
 const Container = styled.div`
   width: 100%;
-  height: 40em;
+  height: ${p => (p.chart ? `40em` : `auto`)};
   display: flex;
   flex-direction: row;
   justify-content: center;
   background-color: ${p => p.theme.colors.grayLight};
   transition: all 0.2s ease-in-out;
   ${p => p.chart && `padding: 0 1.5em;`};
-  ${p => p.theme.maxWidth.tablet`
-    height: ${p.chart ? `40em` : `auto`};
-  `}
-
   ${p =>
     p.topBorder &&
     css`
