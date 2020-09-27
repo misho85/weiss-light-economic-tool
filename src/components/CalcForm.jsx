@@ -101,9 +101,10 @@ const NumberBox = styled.div`
     margin-bottom: 0.2em;
   }
   > h4 {
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: bold;
     margin-bottom: 0;
+    text-transform: capitalize;
   }
 `;
 
