@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
+import { ChartContext } from '../context/ChartContext';
 import CalcForm from './CalcForm';
 import Chart from './Chart';
 
@@ -60,65 +61,9 @@ const Box = styled.div`
   `}
 `;
 
-const chartData = [
-  {
-    time: 'trenutno',
-    trenutno: 37,
-    preporučeno: 142,
-  },
-  {
-    time: 'Godina 1',
-    trenutno: 119,
-    preporučeno: 153,
-  },
-  {
-    time: 'Godina 2',
-    trenutno: 120,
-    preporučeno: 27,
-  },
-  {
-    time: 'Godina 3',
-    trenutno: 190,
-    preporučeno: 179,
-  },
-  {
-    time: 'Godina 4',
-    trenutno: 171,
-    preporučeno: 52,
-  },
-  {
-    time: 'Godina 5',
-    trenutno: 91,
-    preporučeno: 114,
-  },
-  {
-    time: 'Godina 6',
-    trenutno: 73,
-    preporučeno: 128,
-  },
-  {
-    time: 'Godina 7',
-    trenutno: 73,
-    preporučeno: 128,
-  },
-  {
-    time: 'Godina 8',
-    trenutno: 73,
-    preporučeno: 128,
-  },
-  {
-    time: 'Godina 9',
-    trenutno: 73,
-    preporučeno: 128,
-  },
-  {
-    time: 'Godina 10',
-    trenutno: 73,
-    preporučeno: 128,
-  },
-];
-
 const Widget = () => {
+  const { state } = useContext(ChartContext);
+
   return (
     <Wrapper>
       <WidgetWrapper>
@@ -132,11 +77,13 @@ const Widget = () => {
           </Box>
         </Container>
       </WidgetWrapper>
-      <WidgetWrapper>
-        <Container chart>
-          <Chart data={chartData} />
-        </Container>
-      </WidgetWrapper>
+      {state && (state[0].trenutno > 1 || state[0].preporučeno > 1) && (
+        <WidgetWrapper>
+          <Container chart>
+            <Chart data={state} />
+          </Container>
+        </WidgetWrapper>
+      )}
     </Wrapper>
   );
 };

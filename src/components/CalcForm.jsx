@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import * as yup from 'yup';
+import { ChartContext } from '../context/ChartContext';
 import Input from './Input';
 
 const Wrapper = styled.form`
@@ -168,7 +169,29 @@ const CalcForm = () => {
       ? 0
       : roundToTwo((initTrosak2 - initTrosak1) / godUsteda);
 
-  console.log('godUsteda', godUsteda);
+  const { setState } = useContext(ChartContext);
+
+  useEffect(() => {
+    const yearData = [];
+    for (let i = 1; i <= 10; i++) {
+      yearData.push({
+        time: `Godina ${i}`,
+        trenutno: initTrosak1 + godTrosak1 * i,
+        preporučeno: initTrosak2 + godTrosak2 * i,
+      });
+    }
+
+    const chartData = [
+      {
+        time: 'trenutno',
+        trenutno: initTrosak1,
+        preporučeno: initTrosak2,
+      },
+      ...yearData,
+    ];
+
+    setState(chartData);
+  }, [setState, initTrosak1, initTrosak2, godTrosak1, godTrosak2]);
 
   return (
     <FormProvider {...methods}>

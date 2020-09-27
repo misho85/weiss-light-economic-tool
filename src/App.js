@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GlobalStyle } from './styles';
+import { ChartProvider } from './context/ChartContext';
 import Widget from './components/Widget';
 
 const Wrapper = styled.div`
@@ -22,7 +23,9 @@ function App() {
   return (
     <Wrapper>
       <GlobalStyle />
-      <Widget />
+      <ChartProvider>
+        <Widget />
+      </ChartProvider>
     </Wrapper>
   );
 }
