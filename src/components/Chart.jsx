@@ -19,6 +19,7 @@ const MyResponsiveBar = ({ data }) => {
       groupMode="grouped"
       layout={desktop ? `horizontal` : `vertical`}
       colors={[colors.redLight, colors.greenLight]}
+      borderRadius={5}
       axisTop={null}
       axisRight={null}
       axisBottom={{
