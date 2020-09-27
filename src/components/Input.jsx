@@ -12,8 +12,7 @@ const InputContainer = styled.div`
   flex-direction: column;
   margin-bottom: ${p => (p.contact ? `2.5em` : 0)};
 
-  input,
-  textarea {
+  input {
     text-align: ${p => (p.contact ? `unset` : `center`)};
     padding: ${p => (p.contact ? `1em 2em 1em 1.5em` : `0.5em 1em`)};
     outline: none;
@@ -21,6 +20,7 @@ const InputContainer = styled.div`
     font-size: 1em;
     line-height: 1.4;
     background-color: ${p => p.theme.colors.gray};
+    border-radius: 0.5em;
     transition: all 0.2s ease-in-out;
 
     &::placeholder {
@@ -40,24 +40,6 @@ const InputContainer = styled.div`
       cursor: not-allowed;
     }
   }
-
-  input {
-    border-radius: 0.5em;
-  }
-
-  textarea {
-    height: auto;
-    resize: vertical;
-    border-radius: 1em;
-  }
-
-  > svg {
-    width: 1em;
-    height: 1em;
-    position: absolute;
-    right: 1em;
-    top: 1.1em;
-  }
 `;
 
 const Input = ({
@@ -66,9 +48,7 @@ const Input = ({
   placeholder = '',
   autoComplete = 'off',
   required = false,
-  textarea = false,
   disabled = false,
-  rows = 10,
 }) => {
   const { register, errors } = useFormContext();
 
@@ -77,41 +57,27 @@ const Input = ({
       <label hidden htmlFor={name}>
         {name}
       </label>
-      {!textarea ? (
-        <input
-          id={name}
-          aria-label={name}
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          autoComplete={autoComplete}
-          disabled={disabled}
-          ref={register({ required })}
-        />
-      ) : (
-        <textarea
-          id={name}
-          aria-label={name}
-          name={name}
-          placeholder={placeholder}
-          disabled={disabled}
-          ref={register({ required })}
-          rows={rows}
-        />
-      )}
+      <input
+        id={name}
+        aria-label={name}
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        autoComplete={autoComplete}
+        disabled={disabled}
+        ref={register({ required })}
+      />
     </InputContainer>
   );
 };
 
 Input.propTypes = {
   type: PropTypes.string,
-  textarea: PropTypes.bool,
   autoComplete: PropTypes.string,
   disabled: PropTypes.bool,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  rows: PropTypes.number,
 };
 
 export default Input;

@@ -102,6 +102,7 @@ const NumberBox = styled.div`
   > h4 {
     font-size: 1.2em;
     font-weight: bold;
+    margin-bottom: 0;
   }
 `;
 
@@ -111,30 +112,71 @@ const validationSchema = yup.object().shape({
   lux: yup.number().min(1).required('Lux is required!'),
 });
 
+// const roundToTwo = num => Math.round((num + Number.EPSILON) * 100) / 100;
+
+const formatter = num =>
+  new Intl.NumberFormat('sr', {
+    style: 'currency',
+    currency: 'RSD',
+
+    // These options are needed to round to whole numbers.
+    //minimumFractionDigits: 0,
+    //maximumFractionDigits: 0,
+  }).format(num);
+
 const CalcForm = () => {
   const methods = useForm({
     mode: 'onBlur',
     resolver: yupResolver(validationSchema),
   });
 
-  const { handleSubmit } = methods;
+  const { watch } = methods;
 
-  const onSubmit = data => {};
+  const allFields = watch();
+  console.log('allFields', allFields);
+
+  const initTrosak1 =
+    Object.keys(allFields).length === 0
+      ? 0
+      : allFields.brojSijalica1 * allFields.cenaSijalice1;
+
+  const initTrosak2 =
+    Object.keys(allFields).length === 0
+      ? 0
+      : allFields.brojSijalica2 * allFields.cenaSijalice2;
+
+  const godTrosak1 =
+    Object.keys(allFields).length === 0
+      ? 0
+      : allFields.cenaStruje *
+        allFields.radniSati *
+        allFields.brojSijalica1 *
+        (allFields.snagaSijalice1 / 1000);
+
+  const godTrosak2 =
+    Object.keys(allFields).length === 0
+      ? 0
+      : allFields.cenaStruje *
+        allFields.radniSati *
+        allFields.brojSijalica2 *
+        (allFields.snagaSijalice2 / 1000);
+
+  console.log('godTrosak1', godTrosak1);
 
   return (
     <FormProvider {...methods}>
-      <Wrapper onSubmit={handleSubmit(onSubmit)} id="calc-form">
+      <Wrapper>
         <Box top>
           <BoxLeft>
             <InputBox>
               <p>Cena struje</p>
-              <Input type="number" name="cena-struje" required />
+              <Input type="number" name="cenaStruje" required />
             </InputBox>
           </BoxLeft>
           <BoxRight>
             <InputBox>
               <p>Radni sati</p>
-              <Input type="number" name="radni-sati" required />
+              <Input type="number" name="radniSati" required />
             </InputBox>
           </BoxRight>
         </Box>
@@ -144,46 +186,46 @@ const CalcForm = () => {
             <BoxTitle>Trenutna</BoxTitle>
             <InputBox>
               <p>Broj sijalica</p>
-              <Input type="number" name="broj-sijalica" required />
+              <Input type="number" name="brojSijalica1" required />
             </InputBox>
             <InputBox>
               <p>Vati po sijalici</p>
-              <Input type="number" name="snaga-sijalice" required />
+              <Input type="number" name="snagaSijalice1" required />
             </InputBox>
             <InputBox>
               <p>Cena po sijalici</p>
-              <Input type="number" name="cena-sijalice" required />
+              <Input type="number" name="cenaSijalice1" required />
             </InputBox>
             <CostBox left>
               <CostLabel>Inicijalni troškovi</CostLabel>
-              <Cost>300,20</Cost>
+              <Cost>{formatter(initTrosak1)}</Cost>
             </CostBox>
             <CostBox left>
               <CostLabel>Godišnji troškovi</CostLabel>
-              <Cost>300,20</Cost>
+              <Cost>{formatter(godTrosak1)}</Cost>
             </CostBox>
           </BoxLeft>
           <BoxRight>
             <BoxTitle>Preporučena</BoxTitle>
             <InputBox>
               <p>Broj sijalica</p>
-              <Input type="number" name="broj-sijalica" required />
+              <Input type="number" name="brojSijalica2" required />
             </InputBox>
             <InputBox>
               <p>Vati po sijalici</p>
-              <Input type="number" name="snaga-sijalice" required />
+              <Input type="number" name="snagaSijalice2" required />
             </InputBox>
             <InputBox>
               <p>Cena po sijalici</p>
-              <Input type="number" name="cena-sijalice" required />
+              <Input type="number" name="cenaSijalice2" required />
             </InputBox>
             <CostBox>
               <CostLabel>Inicijalni troškovi</CostLabel>
-              <Cost>300,20</Cost>
+              <Cost>{formatter(initTrosak2)}</Cost>
             </CostBox>
             <CostBox>
               <CostLabel>Godišnji troškovi</CostLabel>
-              <Cost>300,20</Cost>
+              <Cost>{formatter(godTrosak2)}</Cost>
             </CostBox>
           </BoxRight>
         </Box>
