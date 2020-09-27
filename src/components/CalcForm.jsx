@@ -177,8 +177,8 @@ const CalcForm = () => {
     for (let i = 1; i <= 10; i++) {
       yearData.push({
         time: `Godina ${i}`,
-        trenutno: initTrosak1 + godTrosak1 * i,
-        preporučeno: initTrosak2 + godTrosak2 * i,
+        trenutno: roundToTwo(initTrosak1 + godTrosak1 * i),
+        preporučeno: roundToTwo(initTrosak2 + godTrosak2 * i),
       });
     }
 
