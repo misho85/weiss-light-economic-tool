@@ -36,18 +36,22 @@ const Box = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: ${p => (p.top ? `space-around` : `space-between`)};
+  margin: auto;
+  ${p =>
+    p.bottom &&
+    p.theme.maxWidth.tablet`
+    flex-direction: column;
+    align-items: center;
+  `}
   ${p => p.theme.maxWidth.phone`
     flex-direction: column;
+    width: 22em;
   `}
 `;
 
 const BoxLeft = styled.div``;
 
-const BoxRight = styled.div`
-  ${p => p.theme.maxWidth.phone`
-    margin-right: 5em;
-  `}
-`;
+const BoxRight = styled.div``;
 
 const InputBox = styled.div`
   display: flex;
@@ -114,7 +118,7 @@ const CalcForm = () => {
           </BoxRight>
         </Box>
         <Title>Rasveta</Title>
-        <Box>
+        <Box bottom>
           <BoxLeft>
             <BoxTitle>Trenutna</BoxTitle>
             <InputBox>

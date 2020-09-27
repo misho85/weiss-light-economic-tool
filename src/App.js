@@ -10,7 +10,10 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${p => p.theme.maxWidth.phone`
+  ${p => p.theme.maxWidth.large`
+    padding: 5%;
+  `}
+  ${p => p.theme.maxWidth.desktop`
     padding: 5% 0;
   `}
 `;

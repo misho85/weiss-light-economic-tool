@@ -39,7 +39,8 @@ const Container = styled.div`
   justify-content: center;
   background-color: ${p => p.theme.colors.grayLight};
   transition: all 0.2s ease-in-out;
-  ${p => p.theme.maxWidth.phone`
+  ${p => p.chart && `padding: 0 1.5em;`};
+  ${p => p.theme.maxWidth.tablet`
     height: ${p.chart ? `40em` : `auto`};
   `}
 
@@ -58,8 +59,8 @@ const Box = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1.5em 4.5em;
-  ${p => p.theme.maxWidth.phone`
-    padding: 1em;
+  ${p => p.theme.maxWidth.desktop`
+    padding: 1.5em;
   `}
 `;
 
