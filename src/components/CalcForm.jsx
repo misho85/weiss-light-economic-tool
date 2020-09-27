@@ -112,7 +112,7 @@ const validationSchema = yup.object().shape({
   lux: yup.number().min(1).required('Lux is required!'),
 });
 
-// const roundToTwo = num => Math.round((num + Number.EPSILON) * 100) / 100;
+const roundToTwo = num => Math.round((num + Number.EPSILON) * 100) / 100;
 
 const formatter = num =>
   new Intl.NumberFormat('sr', {
@@ -126,14 +126,12 @@ const formatter = num =>
 
 const CalcForm = () => {
   const methods = useForm({
-    mode: 'onBlur',
     resolver: yupResolver(validationSchema),
   });
 
   const { watch } = methods;
 
   const allFields = watch();
-  console.log('allFields', allFields);
 
   const initTrosak1 =
     Object.keys(allFields).length === 0
@@ -161,7 +159,16 @@ const CalcForm = () => {
         allFields.brojSijalica2 *
         (allFields.snagaSijalice2 / 1000);
 
-  console.log('godTrosak1', godTrosak1);
+  const godUsteda = godTrosak1 - godTrosak2;
+
+  const periodIsplativosti =
+    godUsteda < 1
+      ? `😱`
+      : initTrosak2 - initTrosak1 < 0
+      ? 0
+      : roundToTwo((initTrosak2 - initTrosak1) / godUsteda);
+
+  console.log('godUsteda', godUsteda);
 
   return (
     <FormProvider {...methods}>
@@ -229,20 +236,22 @@ const CalcForm = () => {
             </CostBox>
           </BoxRight>
         </Box>
-        <Box>
-          <NumberBox>
-            <h2>$10</h2>
-            <h4>Godišnja ušteda</h4>
-          </NumberBox>
-          <NumberBox>
-            <h2>1.5 Godina</h2>
-            <h4>Period isplativosti</h4>
-          </NumberBox>
-          <NumberBox>
-            <h2>$5</h2>
-            <h4>Mesečna razlika</h4>
-          </NumberBox>
-        </Box>
+        {godTrosak2 > 0 && (
+          <Box>
+            <NumberBox>
+              <h2>{formatter(godUsteda)}</h2>
+              <h4>Godišnja ušteda</h4>
+            </NumberBox>
+            <NumberBox>
+              <h2>{periodIsplativosti} Godina</h2>
+              <h4>Period isplativosti</h4>
+            </NumberBox>
+            <NumberBox>
+              <h2>{formatter(godUsteda / 12)}</h2>
+              <h4>Mesečna ušteda</h4>
+            </NumberBox>
+          </Box>
+        )}
       </Wrapper>
     </FormProvider>
   );
