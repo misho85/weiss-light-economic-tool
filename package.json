@@ -2,7 +2,6 @@
   "name": "weiss-light-assistent",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://kurs.resenje.org",
   "dependencies": {
     "@hookform/resolvers": "^0.1.1",
     "@nivo/bar": "^0.62.0",
@@ -16,6 +15,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.8.4",
+    "react-query": "^2.23.0",
     "react-scripts": "3.4.3",
     "styled-components": "^5.2.0",
     "styled-normalize": "^8.0.7",
