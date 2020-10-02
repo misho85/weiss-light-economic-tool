@@ -2,6 +2,7 @@
   "name": "weiss-light-assistent",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://kurs.resenje.org",
   "dependencies": {
     "@hookform/resolvers": "^0.1.1",
     "@nivo/bar": "^0.62.0",
