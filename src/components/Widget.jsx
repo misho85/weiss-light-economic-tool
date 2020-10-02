@@ -75,7 +75,10 @@ const Widget = () => {
     const fetchData = async () => {
       setStatus('fetching');
       try {
-        const result = await axios.get(`/api/v1/currencies/eur/rates/today`);
+        const result = await axios.get(
+          `https://kurs.resenje.org/api/v1/currencies/eur/rates/today`,
+          { mode: 'no-cors' }
+        );
         setStatus('fetched');
         setData(result.data.exchange_middle);
       } catch (e) {
