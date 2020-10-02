@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 import styled, { css } from 'styled-components';
 import { ChartContext } from '../context/ChartContext';
 import CalcForm from './CalcForm';
@@ -63,6 +64,37 @@ const Box = styled.div`
 
 const Widget = () => {
   const { state } = useContext(ChartContext);
+
+  const [status, setStatus] = useState('idle');
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
+
+    const fetchData = async () => {
+      setStatus('fetching');
+      try {
+        const result = await axios.get(
+          `https://kurs.resenje.org/api/v1/currencies/eur/rates/today`
+        );
+        // const result = await axios.get(`/api/v1/currencies/eur/rates/today`);
+        setStatus('fetched');
+        setData(result.data.exchange_middle);
+      } catch (e) {
+        console.error(`😱 Axios request failed: ${e.response.status}`);
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      source.cancel();
+    };
+  }, []);
+
+  console.log('status', status);
+  console.log('data', data);
 
   return (
     <Wrapper>
