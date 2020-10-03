@@ -25,8 +25,9 @@ const InputContainer = styled.div`
 
     &::placeholder {
       color: ${p => p.theme.colors.grayDark};
-      opacity: 0.7;
-      font-style: italic;
+      opacity: 0.5;
+      font-weight: bold;
+      text-align: end;
     }
 
     &:hover,

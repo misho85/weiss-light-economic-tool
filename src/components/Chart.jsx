@@ -3,10 +3,26 @@ import { ResponsiveBar } from '@nivo/bar';
 import useMedia from '../utils/useMedia';
 import useStyledTheme from '../utils/useStyledTheme';
 
-const MyResponsiveBar = ({ data }) => {
+const MyResponsiveBar = ({
+  data,
+  //  exchangeRate
+}) => {
   const { colors, sizes } = useStyledTheme();
   const desktop = useMedia(`(max-width: ${sizes.desktop}px)`);
   const phone = useMedia(`(max-width: ${sizes.phone}px)`);
+
+  // console.log('data', data);
+  // console.log('exchangeRate', exchangeRate);
+
+  // const eurData = data.map(el => {
+  //   return {
+  //     time: el.time,
+  //     preporučeno: el.preporučeno / exchangeRate,
+  //     trenutno: el.trenutno / exchangeRate,
+  //   };
+  // });
+
+  // console.log('eurData', eurData);
 
   return (
     <ResponsiveBar

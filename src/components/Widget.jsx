@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useQuery } from 'react-query';
+// import { useQuery } from 'react-query';
 import styled, { css } from 'styled-components';
 import { ChartContext } from '../context/ChartContext';
 import CalcForm from './CalcForm';
@@ -65,17 +65,18 @@ const Box = styled.div`
 const Widget = () => {
   const { state } = useContext(ChartContext);
 
-  // const [status, setStatus] = useState('idle');
+  // const { isLoading, error, data } = useQuery('repoData', () =>
+  //   fetch(
+  //     'https://cors-anywhere.herokuapp.com/https://kurs.resenje.org/api/v1/currencies/eur/rates/today'
+  //     // 'https://kurs.resenje.org/api/v1/currencies/eur/rates/today'
+  //   ).then(res => res.json())
+  // );
 
-  const { isLoading, error, data } = useQuery('repoData', () =>
-    fetch(
-      'https://cors-anywhere.herokuapp.com/https://kurs.resenje.org/api/v1/currencies/eur/rates/today'
-    ).then(res => res.json())
-  );
+  // const exchangeRate = !isLoading && !error ? data.exchange_middle : 1;
 
-  console.log('isLoading', isLoading);
-  console.log('error', error);
-  console.log('data', data);
+  // console.log('isLoading', isLoading);
+  // console.log('error', error);
+  // console.log('data', data);
 
   return (
     <Wrapper>
@@ -86,14 +87,19 @@ const Widget = () => {
         </TitleBox>
         <Container topBorder>
           <Box>
-            <CalcForm />
+            <CalcForm
+            //  exchangeRate={exchangeRate}
+            />
           </Box>
         </Container>
       </WidgetWrapper>
       {state && (state[0].trenutno > 1 || state[0].preporučeno > 1) && (
         <WidgetWrapper>
           <Container chart>
-            <Chart data={state} />
+            <Chart
+              data={state}
+              //  exchangeRate={exchangeRate}
+            />
           </Container>
         </WidgetWrapper>
       )}

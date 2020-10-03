@@ -38,6 +38,12 @@ const Box = styled.div`
   justify-content: ${p => (p.top ? `space-around` : `space-between`)};
   margin: auto;
   ${p =>
+    p.top &&
+    p.theme.maxWidth.large`
+    flex-direction: column;
+    width: 22em;
+  `}
+  ${p =>
     p.bottom &&
     p.theme.maxWidth.tablet`
     flex-direction: column;
@@ -109,9 +115,14 @@ const NumberBox = styled.div`
 `;
 
 const validationSchema = yup.object().shape({
-  kvadratura: yup.number().min(1).required('Kvadratura is required!'),
-  visina: yup.number().min(1).required('Visina is required!'),
-  lux: yup.number().min(1).required('Lux is required!'),
+  cenaStruje: yup.number().min(1).required('Cena struje is required!'),
+  radniDani: yup.number().min(1).required('Radni dani is required!'),
+  radniSati: yup.number().min(1).required('Radni sati is required!'),
+  brojSijalica1: yup.number().min(1).required('Broj sijalica is required!'),
+  brojSijalica2: yup.number().min(1).required('Broj sijalica is required!'),
+  snagaSijalice1: yup.number().min(1).required('Snaga sijalice is required!'),
+  cenaSijalice1: yup.number().min(1).required('Cena sijalice is required!'),
+  cenaSijalice2: yup.number().min(1).required('Cena sijalice is required!'),
 });
 
 const roundToTwo = num => Math.round((num + Number.EPSILON) * 100) / 100;
@@ -126,14 +137,35 @@ const formatter = num =>
     //maximumFractionDigits: 0,
   }).format(num);
 
+// const formatterEur = num =>
+//   new Intl.NumberFormat('de-DE', {
+//     style: 'currency',
+//     currency: 'EUR',
+//   }).format(num);
+
+// const CalcForm = ({ exchangeRate }) => {
 const CalcForm = () => {
   const methods = useForm({
     resolver: yupResolver(validationSchema),
   });
 
-  const { watch } = methods;
+  const { watch, setValue } = methods;
 
   const allFields = watch();
+
+  useEffect(() => {
+    if (Object.keys(allFields).length > 0) {
+      if (allFields.radniDani < 0) setValue('radniDani', 0);
+      if (allFields.radniDani > 7) setValue('radniDani', 7);
+    }
+
+    if (Object.keys(allFields).length > 0) {
+      if (allFields.radniSati < 0) setValue('radniSati', 0);
+      if (allFields.radniSati > 24) setValue('radniSati', 24);
+    }
+  }, [setValue, allFields]);
+
+  const radniSati = 52 * allFields.radniDani * allFields.radniSati;
 
   const initTrosak1 =
     Object.keys(allFields).length === 0
@@ -149,7 +181,7 @@ const CalcForm = () => {
     Object.keys(allFields).length === 0
       ? 0
       : allFields.cenaStruje *
-        allFields.radniSati *
+        radniSati *
         allFields.brojSijalica1 *
         (allFields.snagaSijalice1 / 1000);
 
@@ -157,11 +189,13 @@ const CalcForm = () => {
     Object.keys(allFields).length === 0
       ? 0
       : allFields.cenaStruje *
-        allFields.radniSati *
+        radniSati *
         allFields.brojSijalica2 *
         (allFields.snagaSijalice2 / 1000);
 
+  // const godUsteda = (godTrosak1 - godTrosak2) / exchangeRate;
   const godUsteda = godTrosak1 - godTrosak2;
+  const mesUsteda = godUsteda / 12;
 
   const periodIsplativosti =
     godUsteda < 1
@@ -198,18 +232,39 @@ const CalcForm = () => {
     <FormProvider {...methods}>
       <Wrapper>
         <Box top>
-          <BoxLeft>
+          <div>
             <InputBox>
               <p>Cena struje</p>
-              <Input type="number" name="cenaStruje" required />
+              <Input
+                type="number"
+                name="cenaStruje"
+                placeholder="RSD/kW"
+                required
+              />
             </InputBox>
-          </BoxLeft>
-          <BoxRight>
+          </div>
+          <div>
+            <InputBox>
+              <p>Radni dani</p>
+              <Input
+                type="number"
+                name="radniDani"
+                placeholder="Mesečno"
+                required
+              />
+            </InputBox>
+          </div>
+          <div>
             <InputBox>
               <p>Radni sati</p>
-              <Input type="number" name="radniSati" required />
+              <Input
+                type="number"
+                name="radniSati"
+                placeholder="Dnevno"
+                required
+              />
             </InputBox>
-          </BoxRight>
+          </div>
         </Box>
         <Title>Rasveta</Title>
         <Box bottom>
@@ -263,6 +318,7 @@ const CalcForm = () => {
         {godTrosak2 > 0 && (
           <Box>
             <NumberBox>
+              {/* <h2>{formatterEur(godUsteda)}</h2> */}
               <h2>{formatter(godUsteda)}</h2>
               <h4>Godišnja ušteda</h4>
             </NumberBox>
@@ -271,7 +327,8 @@ const CalcForm = () => {
               <h4>Period isplativosti</h4>
             </NumberBox>
             <NumberBox>
-              <h2>{formatter(godUsteda / 12)}</h2>
+              {/* <h2>{formatterEur(mesUsteda)}</h2> */}
+              <h2>{formatter(mesUsteda)}</h2>
               <h4>Mesečna ušteda</h4>
             </NumberBox>
           </Box>
