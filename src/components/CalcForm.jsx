@@ -249,7 +249,7 @@ const CalcForm = () => {
               <Input
                 type="number"
                 name="radniDani"
-                placeholder="Mesečno"
+                placeholder="Nedeljno"
                 required
               />
             </InputBox>

@@ -32,7 +32,7 @@ const InputContainer = styled.div`
 
     &:hover,
     &:focus {
-      box-shadow: 0 0 0 2px ${p => p.theme.colors.pink};
+      box-shadow: 0 0 0 2px ${p => p.theme.colors.blue};
     }
 
     &:disabled {
