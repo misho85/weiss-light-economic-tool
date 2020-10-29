@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { GlobalStyle } from './styles';
 import { ChartProvider } from './context/ChartContext';
+import SEO from './components/SEO';
 import Widget from './components/Widget';
 import { PageOrnament } from './graphics';
 
@@ -46,6 +47,7 @@ const Ornament = styled.div`
 function App() {
   return (
     <Wrapper>
+      <SEO />
       <GlobalStyle />
       <ChartProvider>
         <Ornament>
