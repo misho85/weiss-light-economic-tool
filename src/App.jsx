@@ -27,6 +27,7 @@ const Ornament = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: -1;
 
   > svg {
     width: 46em;
