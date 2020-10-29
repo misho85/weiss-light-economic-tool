@@ -3,7 +3,7 @@ import colors from './colors';
 import responsive from './responsive';
 import zIndexes from './zIndexes';
 
-export default {
+const theme = {
   fonts,
   colors,
   zIndexes,
@@ -12,3 +12,5 @@ export default {
   containerWidth: `85em`, // 1360px
   ...responsive,
 };
+
+export default theme;

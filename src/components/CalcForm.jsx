@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { useForm, FormProvider } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers';
+import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { ChartContext } from '../context/ChartContext';
 import Input from './Input';

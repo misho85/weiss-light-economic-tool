@@ -35,8 +35,10 @@ const maxWidth = Object.keys(sizes).reduce((acc, label) => {
 
 // ────────────────────────────────────────────────────────────────────────────────
 
-export default {
+const responsive = {
   minWidth,
   maxWidth,
   sizes,
 };
+
+export default responsive;

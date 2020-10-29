@@ -1,4 +1,4 @@
-export default {
+const colors = {
   white: `#fff`,
   black: `#000`,
   radioUnchecked: `#f3f3f5`,
@@ -13,3 +13,5 @@ export default {
   greenLight: `#33cc99`,
   redLight: `#ff7f83`,
 };
+
+export default colors;

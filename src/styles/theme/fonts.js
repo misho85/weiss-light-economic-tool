@@ -20,4 +20,6 @@ const defaultFonts = `
 const heading = `'Poppins', ${defaultFonts}`;
 const body = `'Poppins', ${defaultFonts}`;
 
-export default { heading, body };
+const fonts = { heading, body };
+
+export default fonts;
