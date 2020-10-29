@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import ReactGA from 'react-ga';
 import { GlobalStyle } from './styles';
 import { ChartProvider } from './context/ChartContext';
 import SEO from './components/SEO';
 import Widget from './components/Widget';
 import { PageOrnament } from './graphics';
+import config from './config';
 
 const Wrapper = styled.div`
   width: auto;
@@ -45,6 +47,11 @@ const Ornament = styled.div`
 `;
 
 function App() {
+  useEffect(() => {
+    ReactGA.initialize(config.googleAnalyticsID);
+    ReactGA.pageview(window.location.pathname);
+  });
+
   return (
     <Wrapper>
       <SEO />

@@ -4,7 +4,7 @@ const base = {
   url: `https://www.weisslight.eu/`, // Domain of your website.
 };
 
-module.exports = {
+const config = {
   /* meta tags */
   siteName: base.name,
   siteTitle: `${base.title} - ${base.name}`,
@@ -19,9 +19,11 @@ module.exports = {
   /* social */
   siteBanner: `banner.jpg`, // Logo used for SEO.
 
-  googleAnalyticsID: ``, // googleAnalyticsID gtag tracking ID.
+  googleAnalyticsID: `G-Q279M8VWXY`, // googleAnalyticsID gtag tracking ID.
 
   keywords: `Weiss Light,LED rasveta,potrosnja struje,potrosnja sijalica`,
 
   pathname: `weiss-light-assistant/economic`,
 };
+
+export default config;
