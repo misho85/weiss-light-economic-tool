@@ -23,5 +23,5 @@ module.exports = {
 
   keywords: `Weiss Light,LED rasveta,potrosnja struje,potrosnja sijalica`,
 
-  pathname: `economic`,
+  pathname: `weiss-light-assistant/economic`,
 };
