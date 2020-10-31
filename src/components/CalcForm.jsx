@@ -1,9 +1,11 @@
-import React, { useContext, useEffect } from 'react';
-import styled from 'styled-components';
-import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useContext, useEffect } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import styled from 'styled-components';
 import * as yup from 'yup';
-import { ChartContext } from '../context/ChartContext';
+
+import { ChartContext } from '~context/ChartContext';
+
 import Input from './Input';
 
 const Wrapper = styled.form`
@@ -133,8 +135,8 @@ const formatter = num =>
     currency: 'RSD',
 
     // These options are needed to round to whole numbers.
-    //minimumFractionDigits: 0,
-    //maximumFractionDigits: 0,
+    // minimumFractionDigits: 0,
+    // maximumFractionDigits: 0,
   }).format(num);
 
 // const formatterEur = num =>
@@ -208,7 +210,7 @@ const CalcForm = () => {
 
   useEffect(() => {
     const yearData = [];
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 10; i += 1) {
       yearData.push({
         time: `Godina ${i}`,
         trenutno: roundToTwo(initTrosak1 + godTrosak1 * i),

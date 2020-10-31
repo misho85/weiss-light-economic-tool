@@ -1,5 +1,5 @@
-import fonts from './fonts';
 import colors from './colors';
+import fonts from './fonts';
 import responsive from './responsive';
 import zIndexes from './zIndexes';
 

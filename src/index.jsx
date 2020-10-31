@@ -1,9 +1,11 @@
+import 'focus-visible/dist/focus-visible';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './styles';
+
 import App from './App';
-import 'focus-visible/dist/focus-visible';
+import { theme } from './styles';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -14,16 +14,21 @@
     "react-dom": "^17.0.1",
     "react-ga": "^3.2.0",
     "react-helmet": "^6.1.0",
-    "react-hook-form": "^6.9.6",
+    "react-hook-form": "^6.10.0",
     "react-query": "^2.25.2",
     "react-scripts": "4.0.0",
-    "styled-components": "^5.2.0",
+    "styled-components": "^5.2.1",
     "styled-normalize": "^8.0.7",
     "yup": "^0.29.3"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.11.1",
     "customize-cra": "^1.0.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
     "prettier": "^2.1.2",
     "react-app-rewired": "^2.1.6",
     "stylelint": "^13.7.2",
@@ -34,11 +39,8 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "build": "react-app-rewired build",
+    "eject": "react-app-rewired eject"
   },
   "browserslist": {
     "production": [

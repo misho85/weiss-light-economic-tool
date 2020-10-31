@@ -1,7 +1,7 @@
-import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
-import useMedia from '../utils/useMedia';
-import useStyledTheme from '../utils/useStyledTheme';
+
+import useMedia from '~utils/useMedia';
+import useStyledTheme from '~utils/useStyledTheme';
 
 const MyResponsiveBar = ({
   data,
@@ -86,7 +86,7 @@ const MyResponsiveBar = ({
               },
             ]
       }
-      animate={true}
+      animate
       motionStiffness={90}
       motionDamping={15}
     />

@@ -1,6 +1,7 @@
+import '@reach/tooltip/styles.css';
+
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
-import '@reach/tooltip/styles.css';
 
 export default createGlobalStyle`
   ${normalize}

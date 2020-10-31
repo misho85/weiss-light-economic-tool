@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 // import { useQuery } from 'react-query';
 import styled, { css } from 'styled-components';
+
 import { ChartContext } from '../context/ChartContext';
 import CalcForm from './CalcForm';
 import Chart from './Chart';

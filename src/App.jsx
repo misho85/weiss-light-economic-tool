@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import { useEffect } from 'react';
 import ReactGA from 'react-ga';
-import { GlobalStyle } from './styles';
-import { ChartProvider } from './context/ChartContext';
+import styled from 'styled-components';
+
 import SEO from './components/SEO';
 import Widget from './components/Widget';
-import { PageOrnament } from './graphics';
 import config from './config';
+import { ChartProvider } from './context/ChartContext';
+import { PageOrnament } from './graphics';
+import { GlobalStyle } from './styles';
 
 const Wrapper = styled.div`
   width: auto;
